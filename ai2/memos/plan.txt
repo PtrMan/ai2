@@ -1,0 +1,18 @@
+plan
+
+- optimizing pipeline
+
+- attention allocation mechanism
+  TODO
+
+- pattern storing/recognition
+ * with modified *** neural network
+ * elements are stored and retrived
+
+ * first match with modified *** algorithm
+ * then categorize with causal networks
+ * then again the same with the categories
+ * (more layers? )
+
+ * pattern matching must be modular/machine modifiable/introspectable
+

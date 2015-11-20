@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{19BC9131-A74D-412D-A908-9EDFEBE5F6DD}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ai2</RootNamespace>
+    <AssemblyName>ai2</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="OpenCL.Net">
+      <HintPath>..\packages\OpenCL.Net.2.2.9.0\lib\net40\OpenCL.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Algorithms\BoxAverageFilter.cs" />
+    <Compile Include="Algorithms\MapAlgorithms.cs" />
+    <Compile Include="Algorithms\TriangleDrawer.cs" />
+    <Compile Include="Algorithms\Visual\Binary.cs" />
+    <Compile Include="Algorithms\Visual\EdgeDetector.cs" />
+    <Compile Include="Algorithms\Visual\Find.cs" />
+    <Compile Include="Algorithms\Visual\GaussianBlur.cs" />
+    <Compile Include="Algorithms\Visual\PointToLineSegmentation.cs" />
+    <Compile Include="Algorithms\Visual\RadialKernelDetector.cs" />
+    <Compile Include="CausalSets\BlockResponsibility.cs" />
+    <Compile Include="CausalSets\CausalSet.cs" />
+    <Compile Include="CausalSets\IterativeBlockDeeping.cs" />
+    <Compile Include="ComputationBackend\cs\AttentionModule.cs" />
+    <Compile Include="ComputationBackend\cs\OperatorColorTransform.cs" />
+    <Compile Include="ComputationBackend\cs\OperatorColorTransformFromHsl.cs" />
+    <Compile Include="ComputationBackend\cs\OperatorColorTransformToHsl.cs" />
+    <Compile Include="ComputationBackend\cs\OperatorGaborFilter.cs" />
+    <Compile Include="ComputationBackend\cs\OperatorMax.cs" />
+    <Compile Include="ComputationBackend\cs\OperatorNeuroidVision.cs" />
+    <Compile Include="ComputationBackend\cs\ParticleMotionTracker.cs" />
+    <Compile Include="ComputationBackend\OpenCl\ComputeContext.cs" />
+    <Compile Include="ComputationBackend\OpenCl\OperatorBlur.cs" />
+    <Compile Include="ComputationBackend\OpenCl\OperatorFindNearestPosition.cs" />
+    <Compile Include="ComputationBackend\OpenCl\OperatorRadialKernel.cs" />
+    <Compile Include="ComputationBackend\OpenCl\OperatorSkeletalize.cs" />
+    <Compile Include="Datastructures\Dag.cs" />
+    <Compile Include="Datastructures\DirectedGraph.cs" />
+    <Compile Include="Datastructures\Map2d.cs" />
+    <Compile Include="Datastructures\Grid.cs" />
+    <Compile Include="Datastructures\TreeNode.cs" />
+    <Compile Include="Datastructures\Variadic.cs" />
+    <Compile Include="GeneticAlgorithm\Core\GeneticAlgorithm.cs" />
+    <Compile Include="GeneticAlgorithm\Core\Genome.cs" />
+    <Compile Include="GeneticAlgorithm\Core\Helper.cs" />
+    <Compile Include="GeneticAlgorithm\VisualLowlevel\Training.cs" />
+    <Compile Include="GeneticAlgorithm\VisualLowlevel\VisualLowLevel.cs" />
+    <Compile Include="GeneticProgramming\TypeRestrictedOperator.cs" />
+    <Compile Include="Libs\FFT.cs" />
+    <Compile Include="MainContext.cs" />
+    <Compile Include="Math\DynamicVector.cs" />
+    <Compile Include="Math\GaborKernel.cs" />
+    <Compile Include="Math\Gamma.cs" />
+    <Compile Include="Math\Matrix44.cs" />
+    <Compile Include="Math\NativeMatrix.cs" />
+    <Compile Include="Math\Vector3.cs" />
+    <Compile Include="Misc\ColorConversion.cs" />
+    <Compile Include="Misc\ColorHsl.cs" />
+    <Compile Include="Misc\ColorRgb.cs" />
+    <Compile Include="Misc\Convolution2d.cs" />
+    <Compile Include="Misc\Gaussian.cs" />
+    <Compile Include="Misc\LeakyIntegrator.cs" />
+    <Compile Include="Misc\Math.cs" />
+    <Compile Include="Misc\Parsing.cs" />
+    <Compile Include="Misc\RandomUtil.cs" />
+    <Compile Include="Misc\TextFile.cs" />
+    <Compile Include="Misc\Vector2.cs" />
+    <Compile Include="NeuralNetworks\AdaptiveResonanceTheory\AdaptiveResonanceTheory2.cs" />
+    <Compile Include="NeuralNetworks\AdaptiveResonanceTheory\Common.cs" />
+    <Compile Include="NeuralNetworks\AdaptiveResonanceTheory\Test0.cs" />
+    <Compile Include="NeuralNetworks\AddaptiveParticle\AddaptiveParticle.cs" />
+    <Compile Include="NeuralNetworks\Neuroids\Neuroid.cs" />
+    <Compile Include="NeuroidModels\Test0.cs" />
+    <Compile Include="NeuroidModels\Visual\Layer0\Layer0.cs" />
+    <Compile Include="Operators\Visual\ClusterPointGroups.cs" />
+    <Compile Include="Operators\Visual\ConnectGroups.cs" />
+    <Compile Include="Operators\Visual\GroupPointsGrid.cs" />
+    <Compile Include="Operators\Visual\SearchScaffoldInGraph.cs" />
+    <Compile Include="PartialOrderedSet\NetworkAlgorithm.cs" />
+    <Compile Include="PartialOrderedSet\NetworkAlgorithm2.cs" />
+    <Compile Include="PartialOrderedSet\PartialOrderedSetAlgorithm.cs" />
+    <Compile Include="PartialOrderedSet\PartialOrderedSetDagElement.cs" />
+    <Compile Include="PartialOrderedSet\Relation.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="ProgramRepresentation\CsGenerator.cs" />
+    <Compile Include="ProgramRepresentation\DagElementData.cs" />
+    <Compile Include="ProgramRepresentation\Execution\FunctionalInterpreter.cs" />
+    <Compile Include="ProgramRepresentation\OpenClGenerator.cs" />
+    <Compile Include="ProgramRepresentation\Parser\ConvertTreeToDag.cs" />
+    <Compile Include="ProgramRepresentation\Parser\Functional.cs" />
+    <Compile Include="ProgramRepresentation\Parser\ProgramsParser.cs" />
+    <Compile Include="ProgramRepresentation\Program.cs" />
+    <Compile Include="ProgramRepresentation\ProgramGenerator.cs" />
+    <Compile Include="ProgramRepresentation\ProgramReader.cs" />
+    <Compile Include="ProgramRepresentation\RepresentationDatabase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceMetric.cs" />
+    <Compile Include="Scaffolds\Graph\ExtractLineScaffold.cs" />
+    <Compile Include="Scaffolds\Graph\ExtractLineScaffoldInstanceData.cs" />
+    <Compile Include="Scaffolds\Graph\GraphScaffold.cs" />
+    <Compile Include="Scaffolds\Graph\GraphScaffoldInstanceData.cs" />
+    <Compile Include="usedSrc\generated\Cs\cauchyDistribution.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="ComputationBackend\OpenCl\src\Blur.cl" />
+    <None Include="ComputationBackend\OpenCl\src\FindNearestPoint.cl" />
+    <None Include="ComputationBackend\OpenCl\src\Skeletalize.cl" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Goal.txt" />
+    <Content Include="usedSrc\functionalPrograms\matrix.txt" />
+    <Content Include="usedSrc\programs\cauchyDistribution.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\OpenCL.Net.2.2.9.0\build\net40\OpenCL.Net.targets" Condition="Exists('..\packages\OpenCL.Net.2.2.9.0\build\net40\OpenCL.Net.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

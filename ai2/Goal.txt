@@ -1,0 +1,28 @@
+﻿- operators for reconstructing features from images
+  (possibly with [handcrafted] scaffolds)
+  * triangle
+  * quad
+  * rectangle
+  * etc.
+
+  * 3d (re)construction from motion images
+
+TODO
+ - convert to hsl -> convert back only the color -> convert to green/yellow ... colorspace
+ 
+ - NetworkAlgorithm2 : implement and test tunneling (shifting/inserting of elements bfore "walls")
+
+
+
+note:
+
+Graph
+
+            o
+		/   |   \
+	/       |       \
+vertices  edges     subgraphs
+| | | |   |      |
+...       |\     |\       ? ?
+          |  |   |  |     ? ?
+         i0 i1  i0 i1

@@ -1,0 +1,7 @@
+graph
+ [0] edges
+   array of arrays with two elements, which are the vertex indices
+ [1] vertices
+   array of arrays with the components
+ [2] groups
+   ????

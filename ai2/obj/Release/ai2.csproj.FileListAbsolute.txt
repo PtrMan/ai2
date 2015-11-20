@@ -1,0 +1,7 @@
+C:\Users\r0b3\files\backuped\programmierung\c#\ai2\ai2\ai2\bin\Release\ai2.exe.config
+C:\Users\r0b3\files\backuped\programmierung\c#\ai2\ai2\ai2\bin\Release\ai2.exe
+C:\Users\r0b3\files\backuped\programmierung\c#\ai2\ai2\ai2\bin\Release\ai2.pdb
+C:\Users\r0b3\files\backuped\programmierung\c#\ai2\ai2\ai2\obj\Release\ai2.exe
+C:\Users\r0b3\files\backuped\programmierung\c#\ai2\ai2\ai2\obj\Release\ai2.pdb
+C:\Users\r0b3\files\backuped\programmierung\c#\ai2\Ai2\ai2\obj\Release\ai2.csprojResolveAssemblyReference.cache
+C:\Users\r0b3\files\backuped\programmierung\c#\ai2\Ai2\ai2\bin\Release\OpenCL.Net.dll

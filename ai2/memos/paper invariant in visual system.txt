@@ -1,0 +1,12 @@
+paper
+"Invariant recognition of feature combinations in the visual system"
+
+discrimination between stimuli composed of combinations of shared features with
+- transform invariant neurons
+ - with a series of hirachical competive networts with local inhibiation
+ - convergent connections to each neuron from a topological correspond. region of the preciding layer
+ - synaptic plasticity with modified hebb-like rule w/ temporal trace of each cell previous activity
+
+1.2
+ - tracing of objects with short term memory associations
+

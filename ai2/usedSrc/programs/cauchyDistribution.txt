@@ -1,0 +1,68 @@
+// parameters
+// s, t, x
+//
+// see
+// http://de.wikipedia.org/wiki/Cauchy-Verteilung
+// (1/PI)*(s/(s^2 + (x-t)^2))
+
+<g cauchyDistribution>
+NULL
+l return
+
+<l return>
+RETURN
+l 0
+
+<l 0>
+MUL
+l 1
+l divpart
+
+<l 1>
+DIV
+l 2
+l 3
+
+<l 2>
+CONSTINT
+1
+
+<l 3>
+CONSTPI
+
+<l divpart>
+DIV
+l paramS
+l 4
+
+<l 4>
+ADD
+l 5
+l 6
+
+<l 5>
+MUL
+l paramS
+l paramS
+
+<l 6>
+MUL
+l 7
+l 7
+
+<l 7>
+SUB
+l paramX
+l paramT
+
+<l paramS>
+PARAM
+s
+
+<l paramX>
+PARAM
+x
+
+<l paramT>
+PARAM
+t

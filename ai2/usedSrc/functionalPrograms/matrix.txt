@@ -1,0 +1,97 @@
+﻿
+; returns a 3 by 3 matrix
+program "math" "matrix" "create translate 2d"
+parameters
+   "matrix" "..."
+   "translation" "array of the translation"
+(pass [
+   1.0 0.0 (invoke ["array" "at"] [#matrix 0])
+   0.0 1.0 (invoke ["array" "at"] [#matrix 1])
+   0.0 0.0 0.0])
+
+; returns a 3 by 3 matrix
+program "math" "matrix" "create rotation 2d"
+parameters
+   "matrix" "..."
+   "rotation" "degree of the rotation"
+(pass [
+   (invoke ["math" "cos"] [#rotation]) (* (invoke ["math" "sin"] [#rotation]) -1.0) 0.0
+   (invoke ["math" "sin"] [#rotation]) (invoke ["math" "cos"] [#rotation])          0.0
+   0.0                                 0.0                                          1.0])
+
+; - 1 because the first index is used to append [] to the input
+program "array" "nth"
+parameters
+   "input" ""
+   "nth" ""
+(fold
+   (match (invoke ["math" "equals"] [(invoke ["math" "mod"] [(- #index 1) #nth]) 0])
+     true (invoke ["array" "append"] [#accu #other])
+     false #accu)
+   (invoke ["array" "extend"] [[[]] #input]))
+
+;; TODO< matrix multiplication >
+
+
+
+
+; helper
+; returns the indices for a matrix vector multiplication as a array of arrays
+program "math" "matrix" "helper" "get indices for matrix vector multiplication"
+parameters
+   "column" "..."
+   "row" "..."
+(invoke ["array" "zip"]
+   (invoke ["array" "generate"] [(* #row 3) (+ (* #row 3) 3)])
+   (invoke ["array" "nth"] [(invoke ["array" "generate"] [#column (+ #column 6)]) 3]))
+
+; combines two arrays into an array with arrays
+; example
+; a = [5 6 7]
+; b = [0 1 2]
+; result
+; [[5 0] [6 1] [7 2]]
+
+program "array" "zip"
+parameters
+   "a" "..."
+   "b" "..."
+(foreach (pass [(invoke ["array" "at"] [#a #index]) (invoke ["array" "at"] [#b #index])])
+    (invoke ["array" "generate"] [0 (invoke ["array" "length"] [#a])]))
+;
+;
+
+; multiply a single row and column of two matrices
+program "math" "matrix" "helper" "mul row column"
+parameters
+   "a" "..."
+   "b" "..."
+   "column" "..."
+   "row" "..."
+(invoke ["array" "sum"]
+   (foreach
+      (set [#ia (invoke ["array" "at"] [#element 0]) #ib (invoke ["array" "at"] [#element 1])]
+         (* (invoke ["array" "at"] [#a #ia]) (invoke ["array" "at"] [#b #ib])))
+      (invoke ["math" "matrix" "helper" "get indices for matrix vector multiplication"] [#column #row])))
+
+
+; test
+program "test"
+parameters
+   "void" "..."
+(set [#a 5 #b #a] #b)
+
+; multiplies a 3x3 matrix with a 3x3 matrix
+;program "math" "matrix" "mul"
+;parameters
+;   "a" "..."
+;   "b" "..."
+;(foreach 
+;   (set [#j #index]
+;      (foreach
+;	      (set [#i #index]
+;		     ())
+;	      [0 1 2]))
+;   [0 1 2])
+
+

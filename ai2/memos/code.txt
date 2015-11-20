@@ -1,0 +1,8 @@
+(invoke ["array" "sum"]
+   
+
+   (foreach
+      (set [#ia (invoke ["array" "at"] [#element 0]) #ib (invoke ["array" "at"] [#element 1])]
+         (* (invoke ["array" "at"] [#a #ia]) (invoke ["array" "at"] [#b #ib])))
+      (invoke ["math" "matrix" "helper" "get indices for matrix vector multiplication"] [#column #row])])       )
+                                                                                                                               )

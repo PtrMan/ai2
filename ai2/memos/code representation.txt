@@ -1,0 +1,216 @@
+code representation
+
+- introspectable code is raw functional
+- nonintrospectable can have imperative operations
+
+functional
+==========
+
+a program is identified under a list of tags
+
+- folding/reducing for the replacement of loops
+
+- no and/or
+ - or is replaced with parallel execution until one operand returns true
+ - and is replaced with serial operation -> result is true if all return true
+
+- no explicit program calls -> pattern matching
+ invoke [tags] [parameters]
+  tag are strings or invokes which return strings
+  all tags together specify the path to the invoked program
+
+- program can return value
+
+- conditions are replaced by pattern matching
+
+operations
+----------
+
++
+  (+ 5 7)
+  (reduce + [5 6 7])
+-
+  (- 5 7)
+*
+/
+mod
+  works also with float
+modneg
+  negative value modululus
+
+pow
+  (pow 5.0 2)
+  (pow 5.0 0.5)  <- special for squareroot
+convert
+  conversion
+
+  (convert "int" "5")
+
+folding
+-------
+
+special variables
+#accu   the accumulator value, on first call its the first value
+#other
+#index  the index of the fold, starting from zero
+
+returns false if no values were folded
+returns first value if array has a length of 1
+
+(fold (+ #accu #b) [5, 4, 3])
+
+
+(fold (invoke ["xxx" "getPositions"] [#index]) [0 1 2 3 4 5 6 7 8 9 10])
+
+serial exeution
+---------------
+
+(serial true true true)
+
+"parallel" execution
+--------------------
+
+(parallel true true)
+
+pattern matching
+---------------
+
+match returns false if it didn't find a match
+
+(match #index
+   true (+ 5 #index)
+   false (- #index 5))
+
+foreach
+-------
+
+iterates over an array and creates a result array by calling the first scope for each element
+
+# index is set
+
+============
+============
+============
+
+function sourcecode -> parsing -> dag
+the dag can be
+ * interpreted
+ * converted to c# code, c++ code, opencl, etc.
+
+============
+))))))))))))
+((((((((((//
+
+code generating code
+
+(serial
+   (codegen.create "scope" "+")
+   (codegen.create "scope" "*")
+   (codegen.create "identier" "a")
+   (codegen.create "number" "5")
+   (codegen.down)
+   (codegen.create "identifer" "b")
+   (codegen.down))
+
+(+ (* #a 5) #b)
+
+
+codegen.replace is only executed on a existing dag (so the dag is modified)
+
+orginal:
+(* #xy 5)
+
+(codegen.replace #xy (+ #a #b))
+
+after
+(* (+ #a #b) 5)
+
+===========
+===========
+
+seed code (is modified)
+(match #isInitializing
+   true #code.initializing
+   false #code.action)
+
+used programs
+
+program "geo" "2d" "create grid"
+parameters
+   "mod" "how many lines should be labeled differently"
+   "gridWidth" "how wide is the grid"
+   "gridHeight" "how height is the grid"
+activated invoke
+(fold
+   (list.append #accu {
+      "index" #index
+      "x" (mod #index #gridWidth)
+      "y" (div "int" #index #gridWidth)
+      "yMod" (mod (div "int" #index #gridWidth) #mod)})
+   (generator.iterate (* #gridWidth #gridHeight)))
+
+
+program "geo" "2d" "skew grid"
+parameters
+   "argument" "list with dict with point data"
+activated invoke
+(foreach
+   (match (dict.get #element "yMod")
+      0 #element
+      1 (dict.change #element "x" (+ (dict.get #element "x") 0.5)))
+   #argument)
+
+
+; this is learned by the learner
+
+; requires implicit var.set #currentResult
+(invoke ["geo" "2d" "create grid"] [2 10 10])
+(invoke ["geo" "2d" "skew grid"] [#currentResult])
+
+; (really executed/built by learned procedure)
+(serial
+   (var.set #working (invoke ["geo" "2d" "create grid"] [2 10 10]))
+   (var.set #working (invoke ["geo" "2d" "skew grid"] [#working]))
+   (return #working))
+
+
+. . . . . . . . . . . . . . . . 
+ .  .  . . . . . . . . . . . .
+
+
+
+-----
+
+invoke
+
+"array" "at"
+"math" "sin"
+"math" "cos"
+"math" "equals"
+"math" "mod"
+
+"array" "append"
+"array" "extend"
+"array" "generate"
+  [start end]
+  result < end
+"array" "length"
+
+
+"dict" "get"
+
+misc commands
+
+
+===========
+)))))))))))
+
+why?
+
+* easy introspectiable by machines
+  * because meta programming does expose "patterns"
+  * estimation of required cycles is easily possible -> code gets a feel for potential optimisations
+  * no explicit loops, only fold
+   * allows introspection because parts are linear and not convoluted
+* conversion to fast imperative code is relativly simple
+* learning is much more easy than raw imperative code

@@ -1,0 +1,6 @@
+C:\Users\r0b3\files\backuped\programmierung\c#\ai2\Ai2\ai2\bin\x64\Debug\ai2.exe.config
+C:\Users\r0b3\files\backuped\programmierung\c#\ai2\Ai2\ai2\bin\x64\Debug\ai2.exe
+C:\Users\r0b3\files\backuped\programmierung\c#\ai2\Ai2\ai2\bin\x64\Debug\ai2.pdb
+C:\Users\r0b3\files\backuped\programmierung\c#\ai2\Ai2\ai2\obj\x64\Debug\ai2.exe
+C:\Users\r0b3\files\backuped\programmierung\c#\ai2\Ai2\ai2\obj\x64\Debug\ai2.pdb
+C:\Users\r0b3\files\backuped\programmierung\c#\ai2\Ai2\ai2\obj\x64\Debug\ai2.csprojResolveAssemblyReference.cache
